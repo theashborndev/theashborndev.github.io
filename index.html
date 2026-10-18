@@ -4,28 +4,143 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MHS Solutions</title>
+<meta name="description" content="MHS Solutions makes relaxing mobile games and apps. Our latest: Arrow Bird Escape, a logic puzzle where you clear the arrows and free every bird.">
+<link rel="icon" href="arrow-bird-escape/img/icon.png">
+<meta property="og:title" content="MHS Solutions – Arrow Bird Escape">
+<meta property="og:description" content="Clear the arrows. Free every bird! A relaxing logic puzzle for Android.">
+<meta property="og:image" content="https://theashborndev.github.io/arrow-bird-escape/img/banner.jpg">
 <style>
-  :root { color-scheme: light dark; --bg: #ffffff; --text: #1d1f2b; --dim: #5b5f73; --accent: #5b5bd6; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #151722; --text: #eceef6; --dim: #a3a7bb; --accent: #8f8ff0; } }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
-  h1 { font-size: 1.8rem; margin: 0 0 4px; }
-  h2 { font-size: 1.15rem; margin: 28px 0 6px; }
-  p { color: var(--dim); }
+  :root {
+    --bg: #12141d; --bg-2: #1a1d29; --card: #212536; --text: #eceef6; --dim: #a3a7bb;
+    --accent: #8f8ff0; --accent-strong: #6c6ce6; --yellow: #f7cb3d; --line: #2c3046;
+    --hero: linear-gradient(160deg, #5b5bd6 0%, #39338d 100%);
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #f8f6f1; --bg-2: #ffffff; --card: #ffffff; --text: #1d1f2b; --dim: #5b5f73;
+            --accent: #5b5bd6; --accent-strong: #4a4ac4; --line: #e6e2d8; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
   a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent);
+           backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: .2px; }
+  .brand span { color: var(--accent); }
+  nav a { color: var(--dim); text-decoration: none; margin-left: 20px; font-weight: 600; font-size: .95rem; }
+  nav a:hover { color: var(--text); }
+
+  .intro { padding: 56px 0 24px; }
+  .intro h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.15; margin: 0 0 12px; }
+  .intro p { color: var(--dim); max-width: 620px; margin: 0; font-size: 1.08rem; }
+
+  .game { margin: 32px 0 48px; border-radius: 24px; overflow: hidden; background: var(--hero); color: #fff; }
+  .game-top { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; padding: 32px; }
+  .game-top img { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+  .game h2 { margin: 0 0 4px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .tagline { margin: 0 0 14px; color: #ecebff; font-size: 1.05rem; }
+  .tagline b { color: var(--yellow); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: #000; color: #fff; padding: 10px 16px;
+           border-radius: 12px; font-weight: 700; font-size: .95rem; text-decoration: none; }
+  .badge small { display: block; font-weight: 500; font-size: .72rem; opacity: .8; line-height: 1.1; }
+  .badge svg { width: 22px; height: 22px; flex: none; }
+
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 4px 32px 32px; scroll-snap-type: x mandatory; }
+  .shots img { width: 200px; flex: none; border-radius: 18px; scroll-snap-align: start;
+               box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 0 0 56px; }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .feature h3 { margin: 0 0 6px; font-size: 1.05rem; }
+  .feature p { margin: 0; color: var(--dim); font-size: .95rem; }
+  .feature .ic { font-size: 1.5rem; margin-bottom: 8px; }
+
+  section h2.section { font-size: 1.5rem; margin: 0 0 16px; }
+  .contact { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; margin-bottom: 56px; }
+  .contact p { margin: 0 0 8px; color: var(--dim); }
+  .contact a.mail { font-size: 1.1rem; font-weight: 700; }
+
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--dim); font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  footer a { color: var(--dim); }
+
+  @media (max-width: 560px) {
+    .game-top { grid-template-columns: 1fr; text-align: center; padding: 28px 20px; justify-items: center; }
+    .game-top img { width: 96px; height: 96px; }
+    .shots { padding: 4px 20px 28px; }
+    .shots img { width: 160px; }
+    nav a { margin-left: 14px; }
+  }
 </style>
 </head>
 <body>
-<main>
-<h1>MHS Solutions</h1>
-<p>Independent mobile apps and games.</p>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">MHS <span>Solutions</span></a>
+    <nav><a href="#games">Games</a><a href="#contact">Contact</a></nav>
+  </div>
+</header>
 
-<h2>Arrow Bird Escape</h2>
-<p>A relaxing logic puzzle: clear the arrows and free every bird.<br>
-<a href="arrow-bird-escape/privacy.html">Privacy policy</a></p>
+<main class="wrap">
+  <section class="intro">
+    <h1>Small games, made with care.</h1>
+    <p>MHS Solutions is a two-person team making relaxing, fair mobile games and apps for Android.
+       No accounts, no pressure, just good puzzles.</p>
+  </section>
 
-<h2>Contact</h2>
-<p><a href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a></p>
+  <section id="games">
+    <div class="game">
+      <div class="game-top">
+        <img src="arrow-bird-escape/img/icon.png" alt="Arrow Bird Escape app icon">
+        <div>
+          <h2>Arrow Bird Escape</h2>
+          <p class="tagline">Clear the arrows. <b>Free every bird!</b></p>
+          <span class="badge" aria-label="Coming soon on Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.7 0 2.4l-3.9 2.2z"/><path fill="#EA4335" d="M16.8 15.4 13.4 12l-9.8 9.7c.4.2.9.2 1.4-.1l11.8-6.2z"/><path fill="#4285F4" d="M16.8 8.6 5 2.4c-.5-.3-1-.3-1.4-.1l9.8 9.7 3.4-3.4z"/></svg>
+            <span><small>Coming soon on</small>Google Play</span>
+          </span>
+        </div>
+      </div>
+      <div class="shots">
+        <img src="arrow-bird-escape/img/daily.jpg" alt="Daily puzzle with two caged birds" loading="lazy">
+        <img src="arrow-bird-escape/img/level.jpg" alt="A level: clear the green path to free the sparrow" loading="lazy">
+        <img src="arrow-bird-escape/img/zen.jpg" alt="Zen mode with soft colours" loading="lazy">
+        <img src="arrow-bird-escape/img/menu-light.jpg" alt="Main menu in the light theme" loading="lazy">
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature"><div class="ic">🐦</div><h3>Free the birds</h3>
+        <p>Every bird has its own door. Clear the arrows on its coloured path and watch it fly.</p></div>
+      <div class="feature"><div class="ic">🧩</div><h3>800 levels</h3>
+        <p>From gentle warm-ups to huge twisting boards, every one verified solvable.</p></div>
+      <div class="feature"><div class="ic">📅</div><h3>Daily puzzle</h3>
+        <p>A fresh challenge each day, the same for everyone. Keep your streak going.</p></div>
+      <div class="feature"><div class="ic">🍃</div><h3>Zen mode</h3>
+        <p>Endless calm boards with soft colours and no pressure at all.</p></div>
+      <div class="feature"><div class="ic">🌙</div><h3>Dark &amp; light</h3>
+        <p>Dark, light and high-contrast themes. Plays offline, no account needed.</p></div>
+      <div class="feature"><div class="ic">🔒</div><h3>Fair &amp; private</h3>
+        <p>Ads are optional videos only. Read the <a href="arrow-bird-escape/privacy.html">privacy policy</a>.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="section">Contact</h2>
+    <p>Questions, feedback or a bug to report? We read every message.</p>
+    <a class="mail" href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 MHS Solutions</span>
+    <span><a href="arrow-bird-escape/privacy.html">Arrow Bird Escape privacy policy</a></span>
+  </div>
+</footer>
 </body>
 </html>
