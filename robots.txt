@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theashborndev.github.io/sitemap.xml

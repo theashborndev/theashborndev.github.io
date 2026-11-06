@@ -2,145 +2,338 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MHS Solutions</title>
-<meta name="description" content="MHS Solutions makes relaxing mobile games and apps. Our latest: Arrow Bird Escape, a logic puzzle where you clear the arrows and free every bird.">
-<link rel="icon" href="arrow-bird-escape/img/icon.png">
-<meta property="og:title" content="MHS Solutions – Arrow Bird Escape">
-<meta property="og:description" content="Clear the arrows. Free every bird! A relaxing logic puzzle for Android.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arrow Bird Escape · MHS Solutions</title>
+<meta name="description" content="Arrow Bird Escape: a colourful logic puzzle for Android. Clear the arrows, free every bird and break the chains of 10 dragons across 1000 levels. Made by MHS Solutions.">
+<meta name="theme-color" content="#7cc8ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131130" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://theashborndev.github.io/">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MHS Solutions">
+<meta property="og:title" content="Arrow Bird Escape · Clear the arrows, free every bird">
+<meta property="og:description" content="1000 levels, 20 islands, 7 kinds of birds and 10 dragon bosses. A relaxing logic puzzle for Android.">
 <meta property="og:image" content="https://theashborndev.github.io/arrow-bird-escape/img/banner.jpg">
+<meta property="og:url" content="https://theashborndev.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("mhs-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="site.css">
 <style>
-  :root {
-    --bg: #12141d; --bg-2: #1a1d29; --card: #212536; --text: #eceef6; --dim: #a3a7bb;
-    --accent: #8f8ff0; --accent-strong: #6c6ce6; --yellow: #f7cb3d; --line: #2c3046;
-    --hero: linear-gradient(160deg, #5b5bd6 0%, #39338d 100%);
+  /* Hero: sky with clouds and hills, phone mockups */
+  .hero {
+    position: relative; overflow: hidden; padding: 36px 0 0;
+    background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 62%, var(--bg) 100%);
   }
-  @media (prefers-color-scheme: light) {
-    :root { --bg: #f8f6f1; --bg-2: #ffffff; --card: #ffffff; --text: #1d1f2b; --dim: #5b5f73;
-            --accent: #5b5bd6; --accent-strong: #4a4ac4; --line: #e6e2d8; }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 999px; background: rgba(255,255,255,.75); filter: blur(1px);
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--text);
-         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
-  a { color: var(--accent); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  .hero::before { width: 180px; height: 46px; top: 46px; left: -40px; box-shadow: 120px 30px 0 -8px rgba(255,255,255,.6); }
+  .hero::after { width: 140px; height: 40px; top: 120px; right: -30px; box-shadow: -90px -50px 0 -6px rgba(255,255,255,.55); }
+  :root[data-theme="dark"] .hero::before, :root[data-theme="dark"] .hero::after { opacity: .08; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero::before, :root:not([data-theme="light"]) .hero::after { opacity: .08; } }
+  .hero-grid { position: relative; z-index: 1; display: grid; gap: 28px; align-items: center; }
+  .hero-copy { text-align: center; }
+  .app-id { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .app-id img { width: 64px; height: 64px; border-radius: 18px; box-shadow: var(--shadow); }
+  .app-id span { text-align: left; font: 600 .82rem/1.3 var(--body); color: var(--ink); opacity: .8; }
+  .app-id b { display: block; font: 700 1.05rem/1.2 var(--display); opacity: 1; }
+  .hero h1 { font-size: clamp(2.3rem, 9vw, 4rem); letter-spacing: -.01em; color: var(--ink); }
+  .hero h1 em { font-style: normal; color: #fff; -webkit-text-stroke: 0; text-shadow: 0 3px 0 var(--green-lip), 0 6px 18px rgba(0,0,0,.15);
+                background: var(--green); padding: 0 .22em; border-radius: .25em; display: inline-block; transform: rotate(-2deg); }
+  .hero .lead { margin: 16px auto 0; color: color-mix(in srgb, var(--ink) 78%, transparent); }
+  .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 28px auto 0; max-width: 460px; }
+  .stat { background: color-mix(in srgb, var(--card) 80%, transparent); border-radius: 16px; padding: 10px 4px; text-align: center; box-shadow: var(--shadow-sm); }
+  .stat b { display: block; font: 700 1.35rem/1.1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .74rem; font-weight: 800; color: var(--dim); text-transform: uppercase; letter-spacing: .04em; }
 
-  header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent);
-           backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .brand { font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: .2px; }
-  .brand span { color: var(--accent); }
-  nav a { color: var(--dim); text-decoration: none; margin-left: 20px; font-weight: 600; font-size: .95rem; }
-  nav a:hover { color: var(--text); }
-
-  .intro { padding: 56px 0 24px; }
-  .intro h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.15; margin: 0 0 12px; }
-  .intro p { color: var(--dim); max-width: 620px; margin: 0; font-size: 1.08rem; }
-
-  .game { margin: 32px 0 48px; border-radius: 24px; overflow: hidden; background: var(--hero); color: #fff; }
-  .game-top { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; padding: 32px; }
-  .game-top img { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
-  .game h2 { margin: 0 0 4px; font-size: clamp(1.6rem, 4vw, 2.2rem); }
-  .tagline { margin: 0 0 14px; color: #ecebff; font-size: 1.05rem; }
-  .tagline b { color: var(--yellow); }
-  .badge { display: inline-flex; align-items: center; gap: 8px; background: #000; color: #fff; padding: 10px 16px;
-           border-radius: 12px; font-weight: 700; font-size: .95rem; text-decoration: none; }
-  .badge small { display: block; font-weight: 500; font-size: .72rem; opacity: .8; line-height: 1.1; }
-  .badge svg { width: 22px; height: 22px; flex: none; }
-
-  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 4px 32px 32px; scroll-snap-type: x mandatory; }
-  .shots img { width: 200px; flex: none; border-radius: 18px; scroll-snap-align: start;
-               box-shadow: 0 8px 24px rgba(0,0,0,.35); }
-
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 0 0 56px; }
-  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
-  .feature h3 { margin: 0 0 6px; font-size: 1.05rem; }
-  .feature p { margin: 0; color: var(--dim); font-size: .95rem; }
-  .feature .ic { font-size: 1.5rem; margin-bottom: 8px; }
-
-  section h2.section { font-size: 1.5rem; margin: 0 0 16px; }
-  .contact { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; margin-bottom: 56px; }
-  .contact p { margin: 0 0 8px; color: var(--dim); }
-  .contact a.mail { font-size: 1.1rem; font-weight: 700; }
-
-  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--dim); font-size: .9rem; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
-  footer a { color: var(--dim); }
-
-  @media (max-width: 560px) {
-    .game-top { grid-template-columns: 1fr; text-align: center; padding: 28px 20px; justify-items: center; }
-    .game-top img { width: 96px; height: 96px; }
-    .shots { padding: 4px 20px 28px; }
-    .shots img { width: 160px; }
-    nav a { margin-left: 14px; }
+  .phones { position: relative; height: 420px; margin: 8px auto -40px; width: 100%; max-width: 420px; }
+  .phone {
+    position: absolute; width: 196px; aspect-ratio: 1 / 2; border-radius: 30px; padding: 7px; background: #11131c;
+    box-shadow: 0 24px 50px rgba(20, 40, 90, .35);
   }
+  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+  .phone.front { left: 50%; top: 0; transform: translateX(-50%); z-index: 2; }
+  .phone.back-l { left: 50%; top: 40px; transform: translateX(-118%) rotate(-8deg) scale(.86); opacity: .97; }
+  .phone.back-r { left: 50%; top: 40px; transform: translateX(18%) rotate(8deg) scale(.86); opacity: .97; }
+  .hills { position: relative; height: 70px; margin-top: -2px;
+    background: radial-gradient(60% 120% at 20% 100%, #5ccf6e 60%, transparent 61%),
+                radial-gradient(55% 110% at 80% 100%, #49bd5e 60%, transparent 61%); }
+  :root[data-theme="dark"] .hills { filter: brightness(.45) saturate(.8); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hills { filter: brightness(.45) saturate(.8); } }
+
+  @media (min-width: 900px) {
+    .hero { padding-top: 64px; }
+    .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 24px; }
+    .hero-copy { text-align: left; }
+    .hero .lead { margin-left: 0; }
+    .cta { justify-content: flex-start; }
+    .stats { margin-left: 0; }
+    .phones { height: 520px; max-width: 520px; margin-bottom: -50px; }
+    .phone { width: 240px; border-radius: 36px; padding: 8px; }
+    .phone img { border-radius: 29px; }
+  }
+  @media (max-width: 380px) {
+    .phones { height: 360px; }
+    .phone { width: 164px; }
+  }
+
+  /* How to play */
+  .steps { display: grid; gap: 14px; margin-top: 28px; }
+  .step { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 18px; }
+  .step .n { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: #fff; font: 700 1.25rem var(--display); box-shadow: 0 4px 0 rgba(0,0,0,.15); }
+  .step h3 { font-size: 1.15rem; margin-bottom: 4px; }
+  .step p { color: var(--dim); font-size: .97rem; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } .step { grid-template-columns: 1fr; } }
+
+  /* Screenshots */
+  .shots-sec { background: var(--bg-2); }
+  .shots-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .arrows { display: none; gap: 8px; }
+  .arrows button { width: 46px; height: 46px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; box-shadow: 0 4px 0 var(--line); font-size: 1.2rem; }
+  .arrows button:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--line); }
+  @media (hover: hover) and (min-width: 760px) { .arrows { display: flex; } }
+  .rail {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    padding: 24px var(--gutter) 28px; margin-top: 4px; scrollbar-width: none;
+    scroll-padding-left: var(--gutter);
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  @media (min-width: 1152px) { .rail { padding-left: calc((100vw - 1120px) / 2 + 16px); scroll-padding-left: calc((100vw - 1120px) / 2 + 16px); } }
+  .shot { flex: none; width: 62vw; max-width: 230px; scroll-snap-align: start; margin: 0; }
+  .shot .frame { aspect-ratio: 1 / 2; border-radius: 22px; overflow: hidden; background: #11131c; padding: 5px; box-shadow: var(--shadow); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+  .shot figcaption { margin-top: 10px; font: 600 .98rem/1.3 var(--display); text-align: center; }
+  .shot figcaption span { display: block; font: 600 .82rem/1.35 var(--body); color: var(--dim); }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
+  .feature { padding: 20px; }
+  .feature .ic { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 12px; }
+  .feature h3 { font-size: 1.15rem; margin-bottom: 6px; }
+  .feature p { color: var(--dim); font-size: .96rem; }
+  @media (max-width: 600px) {
+    .features { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .feature { padding: 14px; }
+    .feature .ic { width: 40px; height: 40px; font-size: 1.25rem; border-radius: 12px; margin-bottom: 8px; }
+    .feature h3 { font-size: 1rem; }
+    .feature p { font-size: .86rem; line-height: 1.45; }
+  }
+
+  /* Birds */
+  .birds { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 26px; }
+  .bird { padding: 14px 16px; border-left: 6px solid var(--c); }
+  .bird h3 { font-size: 1.05rem; }
+  .bird p { color: var(--dim); font-size: .88rem; line-height: 1.45; margin-top: 2px; }
+  .bird small { display: inline-block; margin-top: 6px; font-weight: 800; font-size: .74rem; color: var(--c); text-transform: uppercase; letter-spacing: .05em; }
+
+  /* Dragons band */
+  .dragons { background: radial-gradient(900px 420px at 50% 0%, #2c2f6b, #141a33 70%); color: #eef1ff; }
+  .dragons .eyebrow { color: var(--gold); }
+  .dragons .lead { color: #b5bce6; }
+  .roster { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 28px 0; }
+  .roster a { display: block; text-decoration: none; color: #eef1ff; text-align: center; }
+  .roster img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; background: #1b2445; border: 2px solid color-mix(in srgb, var(--c) 70%, transparent); transition: transform .15s ease; }
+  .roster a:hover img { transform: translateY(-3px) rotate(-2deg); }
+  .roster span { display: block; margin-top: 6px; font: 600 .82rem/1.2 var(--display); }
+  .roster small { display: block; color: #9aa3d6; font: 700 .7rem/1.3 var(--body); }
+  @media (max-width: 420px) { .roster { grid-template-columns: repeat(5, 1fr); gap: 6px; } .roster span { font-size: .7rem; } .roster small { display: none; } }
+  .btn-gold { background: var(--gold); color: var(--gold-ink); box-shadow: 0 5px 0 #c99a1c, 0 10px 24px rgba(0,0,0,.3); }
+  .btn-gold:active { box-shadow: 0 2px 0 #c99a1c; }
+
+  /* Studio + contact */
+  .studio { display: grid; gap: 16px; }
+  @media (min-width: 860px) { .studio { grid-template-columns: 1.2fr .8fr; } }
+  .about, .contact { padding: 26px; }
+  .about p + p { margin-top: 12px; }
+  .about p { color: var(--dim); }
+  .contact { background: linear-gradient(150deg, var(--green), #2aa14c); color: #fff; border: 0; display: grid; gap: 12px; align-content: start; }
+  .contact h2 { font-size: 1.6rem; }
+  .contact p { color: #eafff0; }
+  .contact .btn { justify-self: start; background: #fff; color: #1d6b34; box-shadow: 0 5px 0 #1d7a39; max-width: 100%; overflow-wrap: anywhere; }
 </style>
 </head>
 <body>
-<header>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
   <div class="wrap">
-    <a class="brand" href="#">MHS <span>Solutions</span></a>
-    <nav><a href="#games">Games</a><a href="arrow-bird-escape/dragons.html">Dragons</a><a href="#contact">Contact</a></nav>
+    <a class="brand" href="./" aria-label="MHS Solutions home"><img src="arrow-bird-escape/img/icon.png" alt="" width="34" height="34">MHS <span class="full">Solutions</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#game">Game</a>
+      <a href="arrow-bird-escape/dragons.html">Dragons</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+      </button>
+    </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="intro">
-    <h1>Small games, made with care.</h1>
-    <p>MHS Solutions is a two-person team making relaxing, fair mobile games and apps for Android.
-       No accounts, no pressure, just good puzzles.</p>
-  </section>
-
-  <section id="games">
-    <div class="game">
-      <div class="game-top">
-        <img src="arrow-bird-escape/img/icon.png" alt="Arrow Bird Escape app icon">
-        <div>
-          <h2>Arrow Bird Escape</h2>
-          <p class="tagline">Clear the arrows. <b>Free every bird!</b></p>
-          <span class="badge" aria-label="Coming soon on Google Play">
+<main id="main">
+  <div class="hero" id="game">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="app-id">
+          <img src="arrow-bird-escape/img/icon.png" alt="Arrow Bird Escape app icon" width="64" height="64">
+          <span><b>Arrow Bird Escape</b>Puzzle · Android · Free</span>
+        </div>
+        <h1>Clear the arrows. <em>Free every bird!</em></h1>
+        <p class="lead">A colourful logic puzzle. Tap arrows to send them flying, open each bird's escape path, and break the chains of ten mighty dragons.</p>
+        <div class="cta">
+          <span class="play-badge" role="img" aria-label="Coming soon on Google Play">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.7 0 2.4l-3.9 2.2z"/><path fill="#EA4335" d="M16.8 15.4 13.4 12l-9.8 9.7c.4.2.9.2 1.4-.1l11.8-6.2z"/><path fill="#4285F4" d="M16.8 8.6 5 2.4c-.5-.3-1-.3-1.4-.1l9.8 9.7 3.4-3.4z"/></svg>
             <span><small>Coming soon on</small>Google Play</span>
           </span>
+          <a class="btn btn-light" href="arrow-bird-escape/dragons.html">🐉 Meet the dragons</a>
+        </div>
+        <div class="stats" aria-label="Game at a glance">
+          <div class="stat"><b>1000</b><span>levels</span></div>
+          <div class="stat"><b>20</b><span>islands</span></div>
+          <div class="stat"><b>7</b><span>birds</span></div>
+          <div class="stat"><b>10</b><span>dragons</span></div>
         </div>
       </div>
-      <div class="shots">
-        <img src="arrow-bird-escape/img/daily.jpg" alt="Daily puzzle with two caged birds" loading="lazy">
-        <img src="arrow-bird-escape/img/level.jpg" alt="A level: clear the green path to free the sparrow" loading="lazy">
-        <img src="arrow-bird-escape/img/zen.jpg" alt="Zen mode with soft colours" loading="lazy">
-        <img src="arrow-bird-escape/img/menu-light.jpg" alt="Main menu in the light theme" loading="lazy">
+      <div class="phones" aria-hidden="true">
+        <div class="phone back-l"><img src="arrow-bird-escape/shots/world-map.webp" alt="" width="540" height="1080"></div>
+        <div class="phone back-r"><img src="arrow-bird-escape/shots/boss.webp" alt="" width="540" height="1080"></div>
+        <div class="phone front"><img src="arrow-bird-escape/shots/level.webp" alt="" width="540" height="1080" fetchpriority="high"></div>
       </div>
     </div>
+    <div class="hills" aria-hidden="true"></div>
+  </div>
 
-    <div class="features">
-      <div class="feature"><div class="ic">🐦</div><h3>Free the birds</h3>
-        <p>Every bird has its own door. Clear the arrows on its coloured path and watch it fly.</p></div>
-      <div class="feature"><div class="ic">🧩</div><h3>1000 levels</h3>
-        <p>20 islands, from gentle warm-ups to huge twisting boards, every one verified solvable.</p></div>
-      <div class="feature"><div class="ic">📅</div><h3>Daily puzzle</h3>
-        <p>A fresh challenge each day, the same for everyone. Keep your streak going.</p></div>
-      <div class="feature"><div class="ic">🐉</div><h3>Dragon bosses</h3>
-        <p>Every 100th level a caged dragon waits. Clear every arrow to break its chains. <a href="arrow-bird-escape/dragons.html">Meet all ten dragons</a>.</p></div>
-      <div class="feature"><div class="ic">🌙</div><h3>Dark &amp; light</h3>
-        <p>Dark, light and high-contrast themes. Plays offline, no account needed.</p></div>
-      <div class="feature"><div class="ic">🔒</div><h3>Fair &amp; private</h3>
-        <p>Ads are optional videos only. Read the <a href="arrow-bird-escape/privacy.html">privacy policy</a>.</p></div>
+  <section id="how">
+    <div class="wrap">
+      <div class="eyebrow">How to play</div>
+      <h2 class="h2">Easy to learn, hard to put down</h2>
+      <p class="lead">Every level is a tangle of arrows with birds locked in cages. Pick the right order and the whole board unravels.</p>
+      <div class="steps">
+        <div class="step card"><div class="n" style="background:var(--blue)">1</div><div><h3>Tap an arrow</h3><p>It slides out in the direction it points. If another arrow is in the way, it bumps back.</p></div></div>
+        <div class="step card"><div class="n" style="background:var(--coral)">2</div><div><h3>Clear the path</h3><p>Each cage has its own door and a coloured escape lane. Empty the lane to open it.</p></div></div>
+        <div class="step card"><div class="n" style="background:var(--green)">3</div><div><h3>Free every bird</h3><p>Free them all to win. No bumps earns three stars, and every first clear earns coins.</p></div></div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2 class="section">Contact</h2>
-    <p>Questions, feedback or a bug to report? We read every message.</p>
-    <a class="mail" href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
+  <section class="shots-sec" id="screens" aria-labelledby="screens-h">
+    <div class="wrap shots-head">
+      <div>
+        <div class="eyebrow">Screenshots</div>
+        <h2 class="h2" id="screens-h">Take a look inside</h2>
+        <p class="lead">Swipe through the islands, the boss fights and the daily challenge.</p>
+      </div>
+      <div class="arrows"><button type="button" data-dir="-1" aria-label="Previous screenshots">←</button><button type="button" data-dir="1" aria-label="Next screenshots">→</button></div>
+    </div>
+    <div class="rail" id="rail" tabindex="0" aria-label="Screenshots, scroll sideways">
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/menu.webp" alt="Main menu with Play button, World Map, Daily, Missions and Dragon Lair" width="540" height="1080" loading="lazy"></div><figcaption>Main menu<span>Your next level and next boss at a glance</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/level.webp" alt="A level with two caged birds and many coloured arrows" width="540" height="1080" loading="lazy"></div><figcaption>Puzzle boards<span>Plan the order, free the birds</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/world-map.webp" alt="World map with islands connected by a dotted route" width="540" height="1080" loading="lazy"></div><figcaption>World map<span>20 islands to unlock</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/island.webp" alt="Golden Desert island with a winding road of 50 levels" width="540" height="1080" loading="lazy"></div><figcaption>Island roads<span>50 levels on every island</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/boss.webp" alt="Boss level 200 with the Sand Dragon caged in the centre" width="540" height="1080" loading="lazy"></div><figcaption>Dragon bosses<span>Every 100th level</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/dragon-win.webp" alt="Dragon freed: three stars and coin reward" width="540" height="1080" loading="lazy"></div><figcaption>Dragon freed!<span>Big rewards for big wins</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/lair.webp" alt="Dragon Lair collection with two dragons freed" width="540" height="1080" loading="lazy"></div><figcaption>Dragon Lair<span>Collect all ten</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/missions.webp" alt="Daily missions with coin rewards" width="540" height="1080" loading="lazy"></div><figcaption>Daily missions<span>Three new goals every day</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/daily.webp" alt="Daily challenge calendar with streak" width="540" height="1080" loading="lazy"></div><figcaption>Daily challenge<span>Same puzzle for everyone</span></figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/night.webp" alt="A level in the Night theme" width="540" height="1080" loading="lazy"></div><figcaption>Night theme<span>Easy on the eyes</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="eyebrow">Features</div>
+      <h2 class="h2">Packed with puzzles</h2>
+      <div class="features">
+        <div class="feature card"><div class="ic" style="background:#e3f0ff">🧩</div><h3>1000 levels</h3><p>From gentle warm-ups to huge twisting boards. Every level is checked by a solver, so every one can be won.</p></div>
+        <div class="feature card"><div class="ic" style="background:#ffe9e5">🐉</div><h3>10 dragon bosses</h3><p>A caged dragon waits at every 100th level. Clear every arrow to snap its chains and watch it roar free.</p></div>
+        <div class="feature card"><div class="ic" style="background:#e5f8ea">🗺️</div><h3>20 islands</h3><p>Meadows, deserts, glaciers, volcanoes, reefs and sky isles, each with its own look and road.</p></div>
+        <div class="feature card"><div class="ic" style="background:#fff3d6">📅</div><h3>Daily puzzle &amp; missions</h3><p>A fresh challenge and three missions every day. Keep your streak, and win it back if you miss a day.</p></div>
+        <div class="feature card"><div class="ic" style="background:#efe8ff">🔨</div><h3>Hammer &amp; Shuffle</h3><p>Stuck? Smash an arrow, shuffle the board, or watch a short video for a hint.</p></div>
+        <div class="feature card"><div class="ic" style="background:#e3f6ff">🎵</div><h3>Original music &amp; calls</h3><p>Fresh tunes for menus, levels and boss fights, and every bird has its own song.</p></div>
+        <div class="feature card"><div class="ic" style="background:#f0f2f7">🌙</div><h3>Bright, Night &amp; Contrast</h3><p>Three themes, pinch-to-zoom on big boards, and it plays fully offline.</p></div>
+        <div class="feature card"><div class="ic" style="background:#e5f8ea">🔒</div><h3>No account needed</h3><p>Your progress stays on your phone. Read our <a href="arrow-bird-escape/privacy.html">privacy policy</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="birds" style="padding-top:8px">
+    <div class="wrap">
+      <div class="eyebrow">Meet the birds</div>
+      <h2 class="h2">Seven birds, seven ways out</h2>
+      <p class="lead">New birds join as you travel, each with its own escape rule.</p>
+      <div class="birds">
+        <div class="bird card" style="--c:#f2b632"><h3>Sparrow</h3><p>One door. Clear its lane and it's gone.</p><small>From level 1</small></div>
+        <div class="bird card" style="--c:#7f92bf"><h3>Pigeon</h3><p>Always heads for the far side of the board.</p><small>From level 21</small></div>
+        <div class="bird card" style="--c:#2fae6b"><h3>Parrot</h3><p>Two doors. Either one will do.</p><small>From level 41</small></div>
+        <div class="bird card" style="--c:#a57a52"><h3>Owl</h3><p>Two doors, and both must be clear.</p><small>From level 61</small></div>
+        <div class="bird card" style="--c:#ff8a2b"><h3>Toucan</h3><p>Three doors. Open any two.</p><small>From level 81</small></div>
+        <div class="bird card" style="--c:#6b4a32"><h3>Eagle</h3><p>Three doors, all of them clear.</p><small>From level 121</small></div>
+        <div class="bird card" style="--c:#ff6fa5"><h3>Flamingo</h3><p>Two opposite doors, both open.</p><small>From level 161</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dragons" id="dragons">
+    <div class="wrap">
+      <div class="eyebrow">Boss levels</div>
+      <h2 class="h2">Ten dragons. Ten cages. Can you free them all?</h2>
+      <p class="lead">Each pair of islands ends in a dragon's lair. Clear every single arrow to snap the chains, burst the cage and set the dragon free.</p>
+      <div class="roster" id="roster"></div>
+      <a class="btn btn-gold" href="arrow-bird-escape/dragons.html">See them break free →</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap studio">
+      <div class="about card">
+        <div class="eyebrow">The studio</div>
+        <h2 class="h2">Small games, made with care</h2>
+        <p>MHS Solutions is a two-person team making relaxing, fair mobile games and apps for Android.</p>
+        <p>We build games we'd want to play ourselves: no sign-ups, no pay-to-win, no pressure. Just good puzzles, short sessions and plenty of charm.</p>
+      </div>
+      <div class="contact card">
+        <h2>Say hello 👋</h2>
+        <p>Questions, ideas or a bug to report? We read every message.</p>
+        <a class="btn" href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
+      </div>
+    </div>
   </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <span>© 2026 MHS Solutions</span>
-    <span><a href="arrow-bird-escape/privacy.html">Arrow Bird Escape privacy policy</a></span>
+    <span>© <span data-year>2026</span> MHS Solutions</span>
+    <nav aria-label="Footer">
+      <a href="arrow-bird-escape/dragons.html">Dragons</a>
+      <a href="arrow-bird-escape/privacy.html">Privacy policy</a>
+      <a href="mailto:theashborn.dev@gmail.com">Contact</a>
+    </nav>
   </div>
 </footer>
+
+<script>
+  // Dragon roster (portraits rendered from the game)
+  var R = [["Venom","#3DBE6A",100],["Sand","#D9A441",200],["Frost","#5AB4F0",300],["Ember","#C8323A",400],["Storm","#4F6CF0",500],
+           ["Abyss","#1F8F96",600],["Shadow","#6E6390",700],["Crystal","#F28CC5",800],["Inferno","#FF7A3D",900],["Celestial","#F5D76E",1000]];
+  var roster = document.getElementById("roster");
+  R.forEach(function (d, i) {
+    var n = String(i + 1).padStart(2, "0");
+    var a = document.createElement("a");
+    a.href = "arrow-bird-escape/dragons.html#" + d[0].toLowerCase();
+    a.style.setProperty("--c", d[1]);
+    a.innerHTML = '<img src="arrow-bird-escape/dragons/p' + n + '.webp" alt="" width="120" height="120" loading="lazy"><span>' + d[0] + '</span><small>Level ' + d[2] + '</small>';
+    a.setAttribute("aria-label", d[0] + " Dragon, level " + d[2]);
+    roster.appendChild(a);
+  });
+  // Screenshot rail arrows
+  var rail = document.getElementById("rail");
+  document.querySelectorAll(".arrows button").forEach(function (b) {
+    b.addEventListener("click", function () { rail.scrollBy({ left: +b.dataset.dir * rail.clientWidth * 0.8, behavior: "smooth" }); });
+  });
+</script>
+<script src="site.js"></script>
 </body>
 </html>

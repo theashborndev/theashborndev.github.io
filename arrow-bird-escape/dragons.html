@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="img/icon.png">
-<title>Arrow Bird Escape Dragons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Dragon Bosses · Arrow Bird Escape</title>
+<meta name="description" content="Meet the ten dragon bosses of Arrow Bird Escape and watch each one break free from its cage.">
+<meta name="theme-color" content="#141a33">
+<meta property="og:title" content="The ten dragons of Arrow Bird Escape">
+<meta property="og:description" content="Every 100th level a caged dragon waits. Clear every arrow to set it free.">
+<meta property="og:image" content="https://theashborndev.github.io/arrow-bird-escape/img/banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="../site.css">
 <style>
 /* Layout: a night-sky roster, one card per boss in level order, each card the real in-game animation. Single dark look by choice (matches the game's boss screen). */
 :root {
@@ -20,19 +28,23 @@
   --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
   --body: "Nunito", "Segoe UI", system-ui, sans-serif;
   color-scheme: dark;
+  --bg: #141a33; --bg-2: #222c55; --card: #222c55; --ink: #eef1ff; --link: #9fb7ff;
 }
 html { background: var(--sky); }
+.top { background: color-mix(in srgb, #141a33 85%, transparent); border-bottom-color: var(--line); }
+.top .nav a { color: var(--dim); }
+.top .nav a:hover, .top .nav a[aria-current="page"] { color: var(--ink); background: var(--panel); }
+.page { padding: 28px 0 56px; }
+.card { scroll-margin-top: 80px; }
+.card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
 body {
   background: radial-gradient(1200px 600px at 50% -10%, var(--sky-2), var(--sky) 70%) var(--sky);
   color: var(--ink);
   font-family: var(--body);
   font-size: 15px;
   line-height: 1.5;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 32px 56px;
 }
-.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+.page .wrap { max-width: 1180px; display: grid; gap: 28px; }
 header { display: grid; gap: 10px; }
 .eyebrow { font-family: var(--display); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: var(--gold); }
 h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; margin: 0; text-wrap: balance; }
@@ -40,7 +52,7 @@ h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 
 .timeline { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
 .timeline li { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--dim); }
 .timeline b { color: var(--ink); font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 4px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 18px; }
 .card {
   --c: #fff;
   background: var(--panel);
@@ -70,13 +82,38 @@ dt { color: var(--dim); }
 dd { margin: 0; font-variant-numeric: tabular-nums; }
 .parts { display: flex; flex-wrap: wrap; gap: 6px; }
 .parts span { font-size: 12px; border: 1px solid var(--line); border-radius: 8px; padding: 1px 8px; color: var(--dim); }
-footer { color: var(--dim); font-size: 13px; max-width: 70ch; }
+.note { color: var(--dim); font-size: 13px; max-width: 70ch; }
+.back { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .num, .name img { display: none; }
+  .lvl { top: 8px; left: 8px; font-size: 11px; padding: 2px 9px; }
+  .info { padding: 10px 10px 12px; gap: 6px; }
+  .name h2 { font-size: 17px; }
+  .name small { font-size: 11px; line-height: 1.3; margin-top: 2px; }
+  dl { grid-template-columns: 1fr; gap: 0; font-size: 12px; }
+  dt { margin-top: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+  .parts { gap: 4px; }
+  .parts span { font-size: 10.5px; padding: 0 6px; }
+  .timeline li { font-size: 12px; }
+}
+@media (max-width: 330px) { .grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .timeline li { transition: none; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p style="margin:0"><a href="../index.html" style="color:var(--gold);font-weight:700;text-decoration:none">← MHS Solutions</a></p>
+<a class="skip" href="#grid">Skip to the dragons</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="MHS Solutions home"><img src="img/icon.png" alt="" width="34" height="34">MHS <span class="full">Solutions</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../#game">Game</a>
+      <a href="dragons.html" aria-current="page">Dragons</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<div class="page"><div class="wrap">
   <header>
     <div class="eyebrow">Arrow Bird Escape · boss levels</div>
     <h1>The ten dragons and how they break free</h1>
@@ -93,8 +130,15 @@ footer { color: var(--dim); font-size: 13px; max-width: 70ch; }
 
   <main class="grid" id="grid"></main>
 
-  <footer>In the game the chains break as you clear arrows, so the caged part lasts the whole level. The clips shorten that to two seconds. The board shakes and sparks fly from the cage, and the roar sound plays. None of that is shown here.</footer>
-</div>
+  <p class="note">In the game the chains break as you clear arrows, so the caged part lasts the whole level. The clips shorten that to two seconds. The board shakes and sparks fly from the cage, and the roar sound plays. None of that is shown here.</p>
+  <div class="back"><a class="btn btn-gold" href="../#game" style="background:var(--gold);color:#3a2a00;box-shadow:0 5px 0 #c99a1c">← Back to Arrow Bird Escape</a></div>
+</div></div>
+<footer class="foot">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> MHS Solutions</span>
+    <nav aria-label="Footer"><a href="../">Home</a><a href="privacy.html">Privacy policy</a><a href="mailto:theashborn.dev@gmail.com">Contact</a></nav>
+  </div>
+</footer>
 
 <script>
 const D = [
@@ -114,6 +158,7 @@ D.forEach(([name, col, lvl, islands, cage, board, arrows, parts], i) => {
   const n = String(i + 1).padStart(2, "0");
   const el = document.createElement("article");
   el.className = "card";
+  el.id = name.toLowerCase();
   el.style.setProperty("--c", col);
   el.innerHTML = `
     <div class="stage">
@@ -132,5 +177,6 @@ D.forEach(([name, col, lvl, islands, cage, board, arrows, parts], i) => {
   grid.appendChild(el);
 });
 </script>
+<script src="../site.js"></script>
 </body>
 </html>
