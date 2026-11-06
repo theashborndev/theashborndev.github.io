@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="img/icon.png">
+<title>Arrow Bird Escape Dragons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700&display=swap">
+<style>
+/* Layout: a night-sky roster, one card per boss in level order, each card the real in-game animation. Single dark look by choice (matches the game's boss screen). */
+:root {
+  --sky: #141a33;
+  --sky-2: #1c2547;
+  --panel: #222c55;
+  --line: #34407a;
+  --ink: #eef1ff;
+  --dim: #a3abd6;
+  --gold: #ffc93c;
+  --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+html { background: var(--sky); }
+body {
+  background: radial-gradient(1200px 600px at 50% -10%, var(--sky-2), var(--sky) 70%) var(--sky);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font-family: var(--display); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: var(--gold); }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lede { color: var(--dim); max-width: 64ch; margin: 0; }
+.timeline { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.timeline li { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--dim); }
+.timeline b { color: var(--ink); font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.card {
+  --c: #fff;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+}
+.stage { position: relative; aspect-ratio: 3 / 4; max-width: 100%; background: #1b2445; border-bottom: 3px solid var(--c); }
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lvl {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--gold); color: #3a2a00;
+  font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .04em;
+  border-radius: 999px; padding: 3px 11px;
+}
+.num { position: absolute; top: 10px; right: 12px; font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--dim); }
+.info { padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.name { display: flex; align-items: center; gap: 10px; }
+.name img { width: 44px; height: 44px; border-radius: 10px; background: #1b2445; flex: none; object-fit: cover; }
+.name h2 { font-family: var(--display); font-weight: 700; font-size: 21px; margin: 0; line-height: 1.1; }
+.name small { display: block; color: var(--dim); font-size: 13px; font-family: var(--body); font-weight: 500; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0; font-size: 13px; }
+dt { color: var(--dim); }
+dd { margin: 0; font-variant-numeric: tabular-nums; }
+.parts { display: flex; flex-wrap: wrap; gap: 6px; }
+.parts span { font-size: 12px; border: 1px solid var(--line); border-radius: 8px; padding: 1px 8px; color: var(--dim); }
+footer { color: var(--dim); font-size: 13px; max-width: 70ch; }
+@media (prefers-reduced-motion: reduce) { .timeline li { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0"><a href="../index.html" style="color:var(--gold);font-weight:700;text-decoration:none">← MHS Solutions</a></p>
+  <header>
+    <div class="eyebrow">Arrow Bird Escape · boss levels</div>
+    <h1>The ten dragons and how they break free</h1>
+    <p class="lede">Every 100th level is a dragon boss. Each clip below is rendered from the game's own dragon drawing code with the same timings the board uses. The cage size is the real one for that boss.</p>
+    <ul class="timeline" aria-label="Animation sequence">
+      <li><b>0.0s</b>Caged: bobbing, blinking, smoke puffs</li>
+      <li><b>0.5–1.5s</b>Chains snap at 25%, 50%, 75% of arrows cleared</li>
+      <li><b>2.2s</b>Padlock drops on the last arrow</li>
+      <li><b>2.5s</b>Cage bursts, board shakes</li>
+      <li><b>2.85s</b>Roar with breath</li>
+      <li><b>3.95s</b>Flies off the top</li>
+    </ul>
+  </header>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>In the game the chains break as you clear arrows, so the caged part lasts the whole level. The clips shorten that to two seconds. The board shakes and sparks fly from the cage, and the roar sound plays. None of that is shown here.</footer>
+</div>
+
+<script>
+const D = [
+  ["Venom", "#3DBE6A", 100, "Sunny Meadow + Whisper Forest", "2×2", "12×17", 62, ["Wyvern", "Bat wings", "Back horns", "Neck frill", "Spade tail", "Spots"]],
+  ["Sand", "#D9A441", 200, "Golden Desert + Copper Canyon", "2×2", "13×19", 61, ["Western", "Ram horns", "Back sail", "Club tail", "Stripes"]],
+  ["Frost", "#5AB4F0", 300, "Snowy Peaks + Frozen Glacier", "2×2", "14×20", 72, ["Western", "Ice crown", "Crystal spines", "Blade tail"]],
+  ["Ember", "#C8323A", 400, "Volcano Isle + Ashlands", "3×3", "15×22", 74, ["Heavy western", "Swept horns", "Bat wings", "Spade tail"]],
+  ["Storm", "#4F6CF0", 500, "Storm Coast + Thunder Cliffs", "3×3", "16×23", 79, ["Eastern serpent", "Antlers", "Mane", "Whiskers", "No wings"]],
+  ["Abyss", "#1F8F96", 600, "Coral Reef + Deep Sea", "3×3", "17×25", 85, ["Sea dragon", "Fin crest", "Fin wings", "Whiskers", "Spots"]],
+  ["Shadow", "#6E6390", 700, "Haunted Marsh + Night Woods", "4×4", "18×26", 96, ["Western", "Crown horns", "Tattered wings", "Runes"]],
+  ["Crystal", "#F28CC5", 800, "Crystal Caves + Gem Peaks", "4×4", "19×28", 106, ["Western", "Crystal horns", "Crystal wings", "Crystal tail"]],
+  ["Inferno", "#FF7A3D", 900, "Lava Core + Inferno Rift", "4×4", "20×29", 108, ["Heavy western", "Nose horn", "Flame spines", "Lava cracks"]],
+  ["Celestial", "#F5D76E", 1000, "Sky Isles + Celestial Gate", "5×5", "21×30", 128, ["Eastern serpent", "Antlers", "Feather wings", "Mane", "Whiskers"]],
+];
+const grid = document.getElementById("grid");
+D.forEach(([name, col, lvl, islands, cage, board, arrows, parts], i) => {
+  const n = String(i + 1).padStart(2, "0");
+  const el = document.createElement("article");
+  el.className = "card";
+  el.style.setProperty("--c", col);
+  el.innerHTML = `
+    <div class="stage">
+      <img src="dragons/d${n}.webp" alt="${name} Dragon animation: caged, chains snap, cage bursts, roars and flies away" loading="lazy">
+      <span class="lvl">LEVEL ${lvl}</span><span class="num">Boss ${i + 1} of 10</span>
+    </div>
+    <div class="info">
+      <div class="name"><img src="dragons/p${n}.webp" alt=""><h2>${name} Dragon<small>${islands}</small></h2></div>
+      <dl>
+        <dt>Board</dt><dd>${board} cells, ${arrows} arrows</dd>
+        <dt>Cage</dt><dd>${cage} cells</dd>
+        <dt>To free it</dt><dd>Clear every arrow</dd>
+      </dl>
+      <div class="parts">${parts.map(p => `<span>${p}</span>`).join("")}</div>
+    </div>`;
+  grid.appendChild(el);
+});
+</script>
+</body>
+</html>
