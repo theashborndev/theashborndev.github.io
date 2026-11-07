@@ -91,6 +91,9 @@ p { margin: 0; }
 }
 .play-badge small { display: block; font: 600 .7rem/1.2 var(--body); opacity: .8; letter-spacing: .02em; text-transform: uppercase; }
 .play-badge svg { width: 26px; height: 26px; flex: none; }
+a.play-badge { transition: transform .15s ease; }
+a.play-badge:hover { transform: translateY(-2px); }
+a.play-badge:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
 /* Sections */
 section { padding: 56px 0; }
