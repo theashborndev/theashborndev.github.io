@@ -55,15 +55,17 @@
     <img src="img/icon.png" alt="Arrow Bird Escape icon" width="56" height="56">
     <div>
       <h1>Privacy Policy</h1>
-      <p class="meta">Arrow Bird Escape · Ashborn Studio · Effective November 6, 2026</p>
+      <p class="meta">Arrow Bird Escape · Ashborn Studio · Effective December 3, 2026</p>
     </div>
   </div>
 
   <div class="summary card">
     <h2>The short version</h2>
     <ul>
-      <li>No accounts, no sign-in, and we run no servers that receive your data.</li>
-      <li>Your progress is saved only on your phone.</li>
+      <li>Playing needs no account. Signing in with Google is optional and only used to save your progress to the cloud.</li>
+      <li>Without signing in, your progress is saved only on your phone. Your profile photo always stays on your phone.</li>
+      <li>You can delete your account and its cloud save at any time from inside the game.</li>
+      <li>We use Google Analytics for Firebase to see how the game is played (for example which levels are too hard). In the EEA, UK and Switzerland it only runs with your consent; it never collects your advertising ID and is never used for ads.</li>
       <li>Ads come from Google AdMob, which may use your advertising ID and similar data to show and measure ads.</li>
     </ul>
   </div>
@@ -71,6 +73,9 @@
   <ul class="toc" aria-label="Sections">
     <li><a href="#collect">What we collect</a></li>
     <li><a href="#device">On your device</a></li>
+    <li><a href="#account">Google sign-in</a></li>
+    <li><a href="#delete">Delete your account</a></li>
+    <li><a href="#analytics">Analytics</a></li>
     <li><a href="#ads">Advertising</a></li>
     <li><a href="#choices">Your choices</a></li>
     <li><a href="#children">Children</a></li>
@@ -82,14 +87,48 @@
   We keep data use to the minimum needed to run the game and show ads.</p>
 
   <h2 class="s" id="collect">Information we do not collect</h2>
-  <p>The app has no accounts, no sign-in, no chat and no in-app purchases. We (Ashborn Studio) do not collect your name,
-  email address, contacts, photos, precise location, or any other personal information, and we run no servers
-  that receive data from the app.</p>
+  <p>The app has no chat and no in-app purchases. Unless you choose to sign in with Google (see below), we (Ashborn Studio)
+  do not collect your name, email address, contacts, photos, precise location, or any other personal information.
+  The profile photo you can pick in the game is stored only on your phone and is never uploaded.</p>
 
   <h2 class="s" id="device">Information stored on your device</h2>
   <p>Your game progress (levels completed, stars, coins, best times, daily streak, missions, freed dragons) and settings
   (theme, sound, music) are saved only on your device. They are never sent to us. Uninstalling the app or clearing its
   data deletes them.</p>
+
+  <h2 class="s" id="account">Optional sign-in with Google and cloud save</h2>
+  <p>You can sign in with your Google account (the only sign-in method) to save your progress to the cloud and continue
+  on another phone. If you do, the app uses Google Firebase (Firebase Authentication and Cloud Firestore, operated by
+  Google for us) to store:</p>
+  <ul>
+    <li>your Google account's email address, name and a Firebase user ID, to identify your account;</li>
+    <li>a copy of your game progress (levels, stars, coins, dragons, city, missions, player name and settings) and a random
+    session ID used so that only one phone uses the account at a time.</li>
+  </ul>
+  <p>This data is used only to provide the cloud save. It is not used for ads, not sold and not shared with anyone else.
+  It is sent over encrypted connections and only your own signed-in account can read or change your save.
+  Firebase's data handling is described in the <a href="https://firebase.google.com/support/privacy">Firebase privacy information</a>.</p>
+
+  <h2 class="s" id="delete">Deleting your account and data</h2>
+  <p>In the game, open <strong>Profile → Account → Delete account</strong>. This permanently deletes your Firebase account
+  and your cloud save right away (progress on your phone stays until you uninstall the app or clear its data).
+  You can also ask us to delete your account by emailing <a href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
+  from the Google account you used; we delete it within 30 days. Signing out keeps the cloud save so you can sign in again later.</p>
+
+  <h2 class="s" id="analytics">Game analytics (Google Analytics for Firebase)</h2>
+  <p>To improve the game we use Google Analytics for Firebase. It records gameplay events such as starting, finishing or
+  failing a level, using a hint or booster, claiming a mission, and the length of a play session, together with basic
+  device information (device model, operating system and app version, country derived from the IP address) and a
+  random app-instance ID created by Firebase. It does <strong>not</strong> collect your advertising ID, your name, your
+  email address or your profile photo, and its data is never used for advertising or ad personalization.</p>
+  <ul>
+    <li>In the EEA, the UK and Switzerland, analytics storage stays switched off until you agree in the consent message
+    shown when the game starts; you can change this at any time in <strong>Settings → Ad privacy options</strong>.
+    Without consent, only anonymous signals without identifiers are sent.</li>
+    <li>Analytics data is kept for 2 months and then deleted automatically.</li>
+  </ul>
+  <p>See <a href="https://firebase.google.com/support/privacy">Firebase privacy information</a> and the
+  <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
 
   <h2 class="s" id="ads">Advertising (Google AdMob)</h2>
   <p>The app is free and supported by ads from Google AdMob:</p>
@@ -129,7 +168,8 @@
   we will help remove it.</p>
 
   <h2 class="s" id="security">Security and retention</h2>
-  <p>We do not hold any of your data. Data handled by Google AdMob is kept according to Google's policies.</p>
+  <p>If you never sign in, we hold none of your data. If you sign in, your account and cloud save are kept until you
+  delete them (see above). Data handled by Google AdMob is kept according to Google's policies.</p>
 
   <h2 class="s" id="changes">Changes to this policy</h2>
   <p>If this policy changes, we will update this page and its effective date.</p>

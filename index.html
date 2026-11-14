@@ -3,337 +3,300 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Arrow Bird Escape · Ashborn Studio</title>
-<meta name="description" content="Arrow Bird Escape: a colourful logic puzzle for Android. Clear the arrows, free every bird and break the chains of 10 dragons across 1000 levels. Made by Ashborn Studio.">
-<meta name="theme-color" content="#7cc8ff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#131130" media="(prefers-color-scheme: dark)">
+<title>Ashborn Studio · Indie games forged in fire</title>
+<meta name="description" content="Ashborn Studio is a two-person indie game studio making colourful, fair and replayable mobile games. Home of Arrow Bird Escape.">
+<meta name="theme-color" content="#0b0706">
 <link rel="canonical" href="https://theashborndev.github.io/">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ashborn Studio">
-<meta property="og:title" content="Arrow Bird Escape · Clear the arrows, free every bird">
-<meta property="og:description" content="1000 levels, 20 islands, 7 kinds of birds and 10 dragon bosses. A relaxing logic puzzle for Android.">
-<meta property="og:image" content="https://theashborndev.github.io/arrow-bird-escape/img/banner.jpg">
+<meta property="og:title" content="Ashborn Studio · Indie games forged in fire">
+<meta property="og:description" content="A two-person indie studio making colourful, fair and replayable mobile games.">
+<meta property="og:image" content="https://theashborndev.github.io/studio/og.jpg">
 <meta property="og:url" content="https://theashborndev.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<script>try{var t=localStorage.getItem("mhs-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-  /* Hero: sky with clouds and hills, phone mockups */
-  .hero {
-    position: relative; overflow: hidden; padding: 36px 0 0;
-    background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 62%, var(--bg) 100%);
+  :root {
+    --bg: #0b0706; --bg2: #140c0a; --card: #1a110e; --line: #3a2620;
+    --text: #f5ece6; --dim: #b9a79d; --fire: #ff6a1a; --fire2: #ffb347; --ember: #ff3d1a; --silver: #d9dde2;
+    --r: 20px;
   }
-  .hero::before, .hero::after {
-    content: ""; position: absolute; border-radius: 999px; background: rgba(255,255,255,.75); filter: blur(1px);
-  }
-  .hero::before { width: 180px; height: 46px; top: 46px; left: -40px; box-shadow: 120px 30px 0 -8px rgba(255,255,255,.6); }
-  .hero::after { width: 140px; height: 40px; top: 120px; right: -30px; box-shadow: -90px -50px 0 -6px rgba(255,255,255,.55); }
-  :root[data-theme="dark"] .hero::before, :root[data-theme="dark"] .hero::after { opacity: .08; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero::before, :root:not([data-theme="light"]) .hero::after { opacity: .08; } }
-  .hero-grid { position: relative; z-index: 1; display: grid; gap: 28px; align-items: center; }
-  .hero-copy { text-align: center; }
-  .app-id { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-  .app-id img { width: 64px; height: 64px; border-radius: 18px; box-shadow: var(--shadow); }
-  .app-id span { text-align: left; font: 600 .82rem/1.3 var(--body); color: var(--ink); opacity: .8; }
-  .app-id b { display: block; font: 700 1.05rem/1.2 var(--display); opacity: 1; }
-  .hero h1 { font-size: clamp(2.3rem, 9vw, 4rem); letter-spacing: -.01em; color: var(--ink); }
-  .hero h1 em { font-style: normal; color: #fff; -webkit-text-stroke: 0; text-shadow: 0 3px 0 var(--green-lip), 0 6px 18px rgba(0,0,0,.15);
-                background: var(--green); padding: 0 .22em; border-radius: .25em; display: inline-block; transform: rotate(-2deg); }
-  .hero .lead { margin: 16px auto 0; color: color-mix(in srgb, var(--ink) 78%, transparent); }
-  .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 28px auto 0; max-width: 460px; }
-  .stat { background: color-mix(in srgb, var(--card) 80%, transparent); border-radius: 16px; padding: 10px 4px; text-align: center; box-shadow: var(--shadow-sm); }
-  .stat b { display: block; font: 700 1.35rem/1.1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
-  .stat span { font-size: .74rem; font-weight: 800; color: var(--dim); text-transform: uppercase; letter-spacing: .04em; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--fire2); }
+  img, video { max-width: 100%; display: block; }
+  .wrap { width: min(1140px, 100% - 32px); margin-inline: auto; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 16px; background: #fff; color: #000; padding: 8px 12px; z-index: 99; }
+  h1, h2, h3 { font-family: Cinzel, Georgia, serif; line-height: 1.15; margin: 0 0 .5em; letter-spacing: .02em; }
+  .kicker { font: 600 .8rem/1 Inter, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--fire); margin: 0 0 14px; }
+  .metal { background: linear-gradient(180deg, #fff 0%, #dfe3e8 40%, #8d939b 58%, #eef1f4 82%, #a9afb7 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 1px solid transparent; transition: transform .15s, box-shadow .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-fire { background: linear-gradient(135deg, var(--fire2), var(--fire) 55%, var(--ember)); color: #1a0700; box-shadow: 0 8px 30px -8px #ff5a1acc; }
+  .btn-ghost { border-color: #ffffff33; color: var(--text); background: #ffffff0a; }
+  .btn-ghost:hover { background: #ffffff16; }
 
-  .phones { position: relative; height: 420px; margin: 8px auto -40px; width: 100%; max-width: 420px; }
-  .phone {
-    position: absolute; width: 196px; aspect-ratio: 1 / 2; border-radius: 30px; padding: 7px; background: #11131c;
-    box-shadow: 0 24px 50px rgba(20, 40, 90, .35);
-  }
-  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
-  .phone.front { left: 50%; top: 0; transform: translateX(-50%); z-index: 2; }
-  .phone.back-l { left: 50%; top: 40px; transform: translateX(-118%) rotate(-8deg) scale(.86); opacity: .97; }
-  .phone.back-r { left: 50%; top: 40px; transform: translateX(18%) rotate(8deg) scale(.86); opacity: .97; }
-  .hills { position: relative; height: 70px; margin-top: -2px;
-    background: radial-gradient(60% 120% at 20% 100%, #5ccf6e 60%, transparent 61%),
-                radial-gradient(55% 110% at 80% 100%, #49bd5e 60%, transparent 61%); }
-  :root[data-theme="dark"] .hills { filter: brightness(.45) saturate(.8); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hills { filter: brightness(.45) saturate(.8); } }
+  /* Header */
+  .top { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px); background: #0b0706cc; border-bottom: 1px solid #ffffff10; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font: 800 1.05rem Cinzel, serif; letter-spacing: .08em; }
+  .brand img { width: 38px; height: 38px; border-radius: 9px; }
+  .nav { display: flex; gap: 22px; }
+  .nav a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  .nav a:hover { color: var(--text); }
+  @media (max-width: 640px) { .nav a.hide-sm { display: none; } .nav { gap: 16px; } }
 
-  @media (min-width: 900px) {
-    .hero { padding-top: 64px; }
-    .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 24px; }
-    .hero-copy { text-align: left; }
-    .hero .lead { margin-left: 0; }
-    .cta { justify-content: flex-start; }
-    .stats { margin-left: 0; }
-    .phones { height: 520px; max-width: 520px; margin-bottom: -50px; }
-    .phone { width: 240px; border-radius: 36px; padding: 8px; }
-    .phone img { border-radius: 29px; }
-  }
-  @media (max-width: 380px) {
-    .phones { height: 360px; }
-    .phone { width: 164px; }
-  }
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 56px 0 72px; isolation: isolate; }
+  .hero::before { content: ""; position: absolute; inset: -20% -10% auto; height: 120%; z-index: -2;
+    background: radial-gradient(60% 55% at 70% 45%, #ff5a1a33 0%, transparent 60%), radial-gradient(40% 40% at 20% 80%, #ff3d1a1f 0%, transparent 70%); }
+  #embers { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; }
+  .hero h1 .fire { background: linear-gradient(180deg, var(--fire2), var(--fire) 60%, var(--ember)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { color: var(--dim); font-size: 1.12rem; max-width: 34em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .emblem { position: relative; aspect-ratio: 1; width: min(520px, 100%); margin-inline: auto; border-radius: 50%; }
+  .emblem video, .emblem img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    -webkit-mask: radial-gradient(circle, #000 58%, transparent 71%); mask: radial-gradient(circle, #000 58%, transparent 71%); }
+  .stats { display: flex; gap: 28px; margin-top: 34px; flex-wrap: wrap; }
+  .stat b { display: block; font: 800 1.6rem Cinzel, serif; color: var(--text); }
+  .stat span { color: var(--dim); font-size: .85rem; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .emblem { width: min(360px, 90%); order: -1; } .hero { padding-top: 24px; } }
 
-  /* How to play */
-  .steps { display: grid; gap: 14px; margin-top: 28px; }
-  .step { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 18px; }
-  .step .n { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: #fff; font: 700 1.25rem var(--display); box-shadow: 0 4px 0 rgba(0,0,0,.15); }
-  .step h3 { font-size: 1.15rem; margin-bottom: 4px; }
-  .step p { color: var(--dim); font-size: .97rem; }
-  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } .step { grid-template-columns: 1fr; } }
+  section { padding: 76px 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+  .sec-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0; }
+  .sec-head p { color: var(--dim); margin: 0; max-width: 30em; }
 
-  /* Screenshots */
-  .shots-sec { background: var(--bg-2); }
-  .shots-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .arrows { display: none; gap: 8px; }
-  .arrows button { width: 46px; height: 46px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; box-shadow: 0 4px 0 var(--line); font-size: 1.2rem; }
-  .arrows button:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--line); }
-  @media (hover: hover) and (min-width: 760px) { .arrows { display: flex; } }
-  .rail {
-    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-    padding: 24px var(--gutter) 28px; margin-top: 4px; scrollbar-width: none;
-    scroll-padding-left: var(--gutter);
-  }
-  .rail::-webkit-scrollbar { display: none; }
-  @media (min-width: 1152px) { .rail { padding-left: calc((100vw - 1120px) / 2 + 16px); scroll-padding-left: calc((100vw - 1120px) / 2 + 16px); } }
-  .shot { flex: none; width: 62vw; max-width: 230px; scroll-snap-align: start; margin: 0; }
-  .shot .frame { aspect-ratio: 1 / 2; border-radius: 22px; overflow: hidden; background: #11131c; padding: 5px; box-shadow: var(--shadow); }
-  .shot img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
-  .shot figcaption { margin-top: 10px; font: 600 .98rem/1.3 var(--display); text-align: center; }
-  .shot figcaption span { display: block; font: 600 .82rem/1.35 var(--body); color: var(--dim); }
+  /* Games */
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 24px; }
+  .game { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .game:hover { transform: translateY(-4px); border-color: #ff6a1a66; box-shadow: 0 20px 50px -20px #ff5a1a80; }
+  .game .art { aspect-ratio: 16/9; background: #222 center/cover; position: relative; }
+  .game .art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--card)); }
+  .ribbon { position: absolute; top: 14px; left: 14px; z-index: 2; background: linear-gradient(135deg, var(--fire2), var(--fire)); color: #1a0700; font-weight: 800; font-size: .75rem; letter-spacing: .06em; padding: 6px 12px; border-radius: 999px; text-transform: uppercase; }
+  .game .body { padding: 0 22px 22px; margin-top: -34px; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .game .title { display: flex; align-items: center; gap: 14px; }
+  .game .icon { width: 72px; height: 72px; border-radius: 18px; border: 3px solid var(--card); box-shadow: 0 6px 18px #0008; }
+  .game h3 { font-size: 1.35rem; margin: 18px 0 0; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: .75rem; font-weight: 600; color: var(--dim); border: 1px solid var(--line); padding: 3px 10px; border-radius: 999px; }
+  .game p { color: var(--dim); margin: 0; }
+  .game .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+  .game .btn { padding: 10px 16px; font-size: .92rem; }
+  .soon .art { display: grid; place-items: center; background: radial-gradient(circle at 50% 60%, #ff5a1a2e, transparent 60%), #120b09; }
+  .soon .art img { width: 46%; opacity: .35; filter: grayscale(.3) blur(.5px); animation: breathe 4s ease-in-out infinite; }
+  .soon h3 { color: var(--silver); }
+  @keyframes breathe { 50% { opacity: .55; transform: scale(1.04); } }
 
-  /* Features */
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
-  .feature { padding: 20px; }
-  .feature .ic { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 12px; }
-  .feature h3 { font-size: 1.15rem; margin-bottom: 6px; }
-  .feature p { color: var(--dim); font-size: .96rem; }
-  @media (max-width: 600px) {
-    .features { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .feature { padding: 14px; }
-    .feature .ic { width: 40px; height: 40px; font-size: 1.25rem; border-radius: 12px; margin-bottom: 8px; }
-    .feature h3 { font-size: 1rem; }
-    .feature p { font-size: .86rem; line-height: 1.45; }
-  }
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .values { display: grid; gap: 14px; }
+  .value { display: flex; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+  .value .ic { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: #ff6a1a1f; font-size: 1.25rem; }
+  .value b { display: block; }
+  .value span { color: var(--dim); font-size: .95rem; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
 
-  /* Birds */
-  .birds { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 26px; }
-  .bird { padding: 14px 16px; border-left: 6px solid var(--c); }
-  .bird h3 { font-size: 1.05rem; }
-  .bird p { color: var(--dim); font-size: .88rem; line-height: 1.45; margin-top: 2px; }
-  .bird small { display: inline-block; margin-top: 6px; font-weight: 800; font-size: .74rem; color: var(--c); text-transform: uppercase; letter-spacing: .05em; }
+  /* Intro reel */
+  .reel { border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); background: #000; box-shadow: 0 30px 80px -30px #ff5a1a66; }
+  .reel video { width: 100%; aspect-ratio: 16/9; }
 
-  /* Dragons band */
-  .dragons { background: radial-gradient(900px 420px at 50% 0%, #2c2f6b, #141a33 70%); color: #eef1ff; }
-  .dragons .eyebrow { color: var(--gold); }
-  .dragons .lead { color: #b5bce6; }
-  .roster { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 28px 0; }
-  .roster a { display: block; text-decoration: none; color: #eef1ff; text-align: center; }
-  .roster img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; background: #1b2445; border: 2px solid color-mix(in srgb, var(--c) 70%, transparent); transition: transform .15s ease; }
-  .roster a:hover img { transform: translateY(-3px) rotate(-2deg); }
-  .roster span { display: block; margin-top: 6px; font: 600 .82rem/1.2 var(--display); }
-  .roster small { display: block; color: #9aa3d6; font: 700 .7rem/1.3 var(--body); }
-  @media (max-width: 420px) { .roster { grid-template-columns: repeat(5, 1fr); gap: 6px; } .roster span { font-size: .7rem; } .roster small { display: none; } }
-  .btn-gold { background: var(--gold); color: var(--gold-ink); box-shadow: 0 5px 0 #c99a1c, 0 10px 24px rgba(0,0,0,.3); }
-  .btn-gold:active { box-shadow: 0 2px 0 #c99a1c; }
+  /* News */
+  .news { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 18px; }
+  .post { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .post time { color: var(--fire); font-weight: 700; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
+  .post h3 { font-size: 1.1rem; margin: 8px 0 6px; }
+  .post p { color: var(--dim); margin: 0; font-size: .95rem; }
 
-  /* Studio + contact */
-  .studio { display: grid; gap: 16px; }
-  @media (min-width: 860px) { .studio { grid-template-columns: 1.2fr .8fr; } }
-  .about, .contact { padding: 26px; }
-  .about p + p { margin-top: 12px; }
-  .about p { color: var(--dim); }
-  .contact { background: linear-gradient(150deg, var(--green), #2aa14c); color: #fff; border: 0; display: grid; gap: 12px; align-content: start; }
-  .contact h2 { font-size: 1.6rem; }
-  .contact p { color: #eafff0; }
-  .contact .btn { justify-self: start; background: #fff; color: #1d6b34; box-shadow: 0 5px 0 #1d7a39; max-width: 100%; overflow-wrap: anywhere; }
+  /* Contact */
+  .contact { text-align: center; background: radial-gradient(60% 120% at 50% 100%, #ff5a1a26, transparent 70%), var(--bg2); border-block: 1px solid #ffffff0d; }
+  .contact h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  .contact p { color: var(--dim); max-width: 34em; margin: 0 auto 22px; }
+
+  footer { padding: 30px 0 40px; color: var(--dim); font-size: .9rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
+  footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s, transform .7s; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .soon .art img { animation: none; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Ashborn Studio home"><img src="arrow-bird-escape/img/icon.png" alt="" width="34" height="34">Ashborn <span class="full">Studio</span></a>
+    <a class="brand" href="./" aria-label="Ashborn Studio home"><img src="studio/emblem-256.webp" alt="" width="38" height="38">ASHBORN</a>
     <nav class="nav" aria-label="Main">
-      <a href="#game">Game</a>
-      <a href="arrow-bird-escape/dragons.html">Dragons</a>
+      <a href="#games">Games</a>
+      <a href="#studio" class="hide-sm">Studio</a>
+      <a href="#news" class="hide-sm">News</a>
       <a href="#contact">Contact</a>
-      <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch light or dark theme">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
-      </button>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <div class="hero" id="game">
+  <div class="hero">
+    <canvas id="embers" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <div class="app-id">
-          <img src="arrow-bird-escape/img/icon.png" alt="Arrow Bird Escape app icon" width="64" height="64">
-          <span><b>Arrow Bird Escape</b>Puzzle · Android · Free</span>
-        </div>
-        <h1>Clear the arrows. <em>Free every bird!</em></h1>
-        <p class="lead">A colourful logic puzzle. Tap arrows to send them flying, open each bird's escape path, and break the chains of ten mighty dragons.</p>
+      <div>
+        <p class="kicker">Independent game studio</p>
+        <h1><span class="metal">Games</span> <span class="metal">forged</span><br>in <span class="fire">fire</span>.</h1>
+        <p class="lead">We are Ashborn Studio, two indie developers making colourful, fair and endlessly replayable games for your phone. Small team, big ideas, no pay-to-win.</p>
         <div class="cta">
-          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.mhssolutions.arrowbirdescape" target="_blank" rel="noopener" aria-label="Get Arrow Bird Escape on Google Play">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.7 0 2.4l-3.9 2.2z"/><path fill="#EA4335" d="M16.8 15.4 13.4 12l-9.8 9.7c.4.2.9.2 1.4-.1l11.8-6.2z"/><path fill="#4285F4" d="M16.8 8.6 5 2.4c-.5-.3-1-.3-1.4-.1l9.8 9.7 3.4-3.4z"/></svg>
-            <span><small>Get it on</small>Google Play</span>
-          </a>
-          <a class="btn btn-light" href="arrow-bird-escape/dragons.html">🐉 Meet the dragons</a>
+          <a class="btn btn-fire" href="#games">Explore our games</a>
+          <a class="btn btn-ghost" href="#reel">▶ Watch the intro</a>
         </div>
-        <div class="stats" aria-label="Game at a glance">
-          <div class="stat"><b>1000</b><span>levels</span></div>
-          <div class="stat"><b>20</b><span>islands</span></div>
-          <div class="stat"><b>7</b><span>birds</span></div>
-          <div class="stat"><b>10</b><span>dragons</span></div>
+        <div class="stats">
+          <div class="stat"><b>1</b><span>game out now</span></div>
+          <div class="stat"><b>1000</b><span>levels to play</span></div>
+          <div class="stat"><b>2</b><span>devs, 0 publishers</span></div>
         </div>
       </div>
-      <div class="phones" aria-hidden="true">
-        <div class="phone back-l"><img src="arrow-bird-escape/shots/world-map.webp" alt="" width="540" height="1080"></div>
-        <div class="phone back-r"><img src="arrow-bird-escape/shots/boss.webp" alt="" width="540" height="1080"></div>
-        <div class="phone front"><img src="arrow-bird-escape/shots/level.webp" alt="" width="540" height="1080" fetchpriority="high"></div>
+      <div class="emblem">
+        <video autoplay muted loop playsinline poster="studio/emblem.webp" aria-label="The Ashborn Studio phoenix emblem, burning">
+          <source src="studio/emblem-loop.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
-    <div class="hills" aria-hidden="true"></div>
   </div>
 
-  <section id="how">
+  <section id="games">
     <div class="wrap">
-      <div class="eyebrow">How to play</div>
-      <h2 class="h2">Easy to learn, hard to put down</h2>
-      <p class="lead">Every level is a tangle of arrows with birds locked in cages. Pick the right order and the whole board unravels.</p>
-      <div class="steps">
-        <div class="step card"><div class="n" style="background:var(--blue)">1</div><div><h3>Tap an arrow</h3><p>It slides out in the direction it points. If another arrow is in the way, it bumps back.</p></div></div>
-        <div class="step card"><div class="n" style="background:var(--coral)">2</div><div><h3>Clear the path</h3><p>Each cage has its own door and a coloured escape lane. Empty the lane to open it.</p></div></div>
-        <div class="step card"><div class="n" style="background:var(--green)">3</div><div><h3>Free every bird</h3><p>Free them all to win. No bumps earns three stars, and every first clear earns coins.</p></div></div>
+      <div class="sec-head reveal">
+        <div><p class="kicker">Our games</p><h2>Play what we make</h2></div>
+        <p>Every Ashborn game is free to play, works offline and respects your time.</p>
+      </div>
+      <div class="games">
+        <article class="game reveal">
+          <div class="art" style="background-image:url('arrow-bird-escape/img/banner.jpg')"><span class="ribbon">Dragon Update · 3 Dec</span></div>
+          <div class="body">
+            <div class="title">
+              <img class="icon" src="arrow-bird-escape/img/icon.png" alt="Arrow Bird Escape icon" width="72" height="72">
+              <div><h3>Arrow Bird Escape</h3><div class="tags"><span class="tag">Puzzle</span><span class="tag">Android</span><span class="tag">Free</span></div></div>
+            </div>
+            <p>Clear the arrows, free every bird. 1000 levels over 20 islands, 7 kinds of birds, 10 dragon bosses and your own Dragon City to build.</p>
+            <div class="actions">
+              <a class="btn btn-fire" href="https://play.google.com/store/apps/details?id=com.mhssolutions.arrowbirdescape" target="_blank" rel="noopener">▶ Google Play</a>
+              <a class="btn btn-ghost" href="arrow-bird-escape/">Game page</a>
+              <a class="btn btn-ghost" href="arrow-bird-escape/dragons.html">Dragons</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="game soon reveal">
+          <div class="art"><img src="studio/emblem-256.webp" alt="" width="256" height="256"><span class="ribbon">In the forge</span></div>
+          <div class="body">
+            <h3>Next game</h3>
+            <div class="tags"><span class="tag">Coming soon</span></div>
+            <p>Something new is rising from the ashes. Follow us to be the first to play it.</p>
+            <div class="actions"><a class="btn btn-ghost" href="#contact">Get notified</a></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="shots-sec" id="screens" aria-labelledby="screens-h">
-    <div class="wrap shots-head">
-      <div>
-        <div class="eyebrow">Screenshots</div>
-        <h2 class="h2" id="screens-h">Take a look inside</h2>
-        <p class="lead">Swipe through the islands, the boss fights and the daily challenge.</p>
+  <section id="studio" style="padding-top:20px">
+    <div class="wrap about">
+      <div class="reveal">
+        <p class="kicker">The studio</p>
+        <h2 class="metal" style="font-size:clamp(1.8rem,4vw,2.6rem)">Rising from the ashes</h2>
+        <p class="lead">Ashborn is a phoenix: every game we finish teaches us something, and the next one rises stronger. We design, code, draw and compose everything ourselves, and we play every level before you do.</p>
       </div>
-      <div class="arrows"><button type="button" data-dir="-1" aria-label="Previous screenshots">←</button><button type="button" data-dir="1" aria-label="Next screenshots">→</button></div>
-    </div>
-    <div class="rail" id="rail" tabindex="0" aria-label="Screenshots, scroll sideways">
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/menu.webp" alt="Main menu with Play button, World Map, Daily, Missions and Dragon Lair" width="540" height="1080" loading="lazy"></div><figcaption>Main menu<span>Your next level and next boss at a glance</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/level.webp" alt="A level with two caged birds and many coloured arrows" width="540" height="1080" loading="lazy"></div><figcaption>Puzzle boards<span>Plan the order, free the birds</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/world-map.webp" alt="World map with islands connected by a dotted route" width="540" height="1080" loading="lazy"></div><figcaption>World map<span>20 islands to unlock</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/island.webp" alt="Golden Desert island with a winding road of 50 levels" width="540" height="1080" loading="lazy"></div><figcaption>Island roads<span>50 levels on every island</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/boss.webp" alt="Boss level 200 with the Sand Dragon caged in the centre" width="540" height="1080" loading="lazy"></div><figcaption>Dragon bosses<span>Every 100th level</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/dragon-win.webp" alt="Dragon freed: three stars and coin reward" width="540" height="1080" loading="lazy"></div><figcaption>Dragon freed!<span>Big rewards for big wins</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/lair.webp" alt="Dragon Lair collection with two dragons freed" width="540" height="1080" loading="lazy"></div><figcaption>Dragon Lair<span>Collect all ten</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/missions.webp" alt="Daily missions with coin rewards" width="540" height="1080" loading="lazy"></div><figcaption>Daily missions<span>Three new goals every day</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/daily.webp" alt="Daily challenge calendar with streak" width="540" height="1080" loading="lazy"></div><figcaption>Daily challenge<span>Same puzzle for everyone</span></figcaption></figure>
-      <figure class="shot"><div class="frame"><img src="arrow-bird-escape/shots/night.webp" alt="A level in the Night theme" width="540" height="1080" loading="lazy"></div><figcaption>Night theme<span>Easy on the eyes</span></figcaption></figure>
+      <div class="values reveal">
+        <div class="value"><div class="ic">🔥</div><div><b>Made with care</b><span>Hand-tuned levels, our own art and music, and lots of playtesting.</span></div></div>
+        <div class="value"><div class="ic">⚖️</div><div><b>Fair to players</b><span>No pay-to-win and no energy timers. Ads stay out of your way.</span></div></div>
+        <div class="value"><div class="ic">🛡️</div><div><b>Privacy first</b><span>We collect as little as possible and explain all of it in plain words.</span></div></div>
+        <div class="value"><div class="ic">🚀</div><div><b>Always improving</b><span>Regular updates shaped by what our players tell us.</span></div></div>
+      </div>
     </div>
   </section>
 
-  <section id="features">
+  <section id="reel" style="padding-top:20px">
     <div class="wrap">
-      <div class="eyebrow">Features</div>
-      <h2 class="h2">Packed with puzzles</h2>
-      <div class="features">
-        <div class="feature card"><div class="ic" style="background:#e3f0ff">🧩</div><h3>1000 levels</h3><p>From gentle warm-ups to huge twisting boards. Every level is checked by a solver, so every one can be won.</p></div>
-        <div class="feature card"><div class="ic" style="background:#ffe9e5">🐉</div><h3>10 dragon bosses</h3><p>A caged dragon waits at every 100th level. Clear every arrow to snap its chains and watch it roar free.</p></div>
-        <div class="feature card"><div class="ic" style="background:#e5f8ea">🗺️</div><h3>20 islands</h3><p>Meadows, deserts, glaciers, volcanoes, reefs and sky isles, each with its own look and road.</p></div>
-        <div class="feature card"><div class="ic" style="background:#fff3d6">📅</div><h3>Daily puzzle &amp; missions</h3><p>A fresh challenge and three missions every day. Keep your streak, and win it back if you miss a day.</p></div>
-        <div class="feature card"><div class="ic" style="background:#efe8ff">🔨</div><h3>Hammer &amp; Shuffle</h3><p>Stuck? Smash an arrow, shuffle the board, or watch a short video for a hint.</p></div>
-        <div class="feature card"><div class="ic" style="background:#e3f6ff">🎵</div><h3>Original music &amp; calls</h3><p>Fresh tunes for menus, levels and boss fights, and every bird has its own song.</p></div>
-        <div class="feature card"><div class="ic" style="background:#f0f2f7">🌙</div><h3>Bright, Night &amp; Contrast</h3><p>Three themes, pinch-to-zoom on big boards, and it plays fully offline.</p></div>
-        <div class="feature card"><div class="ic" style="background:#e5f8ea">🔒</div><h3>No account needed</h3><p>Your progress stays on your phone. Read our <a href="arrow-bird-escape/privacy.html">privacy policy</a>.</p></div>
+      <div class="sec-head reveal"><div><p class="kicker">Studio intro</p><h2>Born in fire</h2></div><p>The intro you'll see at the start of our games. Turn the sound on.</p></div>
+      <div class="reel reveal">
+        <video controls playsinline preload="none" poster="studio/intro-poster.jpg">
+          <source src="studio/intro.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
 
-  <section id="birds" style="padding-top:8px">
+  <section id="news" style="padding-top:20px">
     <div class="wrap">
-      <div class="eyebrow">Meet the birds</div>
-      <h2 class="h2">Seven birds, seven ways out</h2>
-      <p class="lead">New birds join as you travel, each with its own escape rule.</p>
-      <div class="birds">
-        <div class="bird card" style="--c:#f2b632"><h3>Sparrow</h3><p>One door. Clear its lane and it's gone.</p><small>From level 1</small></div>
-        <div class="bird card" style="--c:#7f92bf"><h3>Pigeon</h3><p>Always heads for the far side of the board.</p><small>From level 21</small></div>
-        <div class="bird card" style="--c:#2fae6b"><h3>Parrot</h3><p>Two doors. Either one will do.</p><small>From level 41</small></div>
-        <div class="bird card" style="--c:#a57a52"><h3>Owl</h3><p>Two doors, and both must be clear.</p><small>From level 61</small></div>
-        <div class="bird card" style="--c:#ff8a2b"><h3>Toucan</h3><p>Three doors. Open any two.</p><small>From level 81</small></div>
-        <div class="bird card" style="--c:#6b4a32"><h3>Eagle</h3><p>Three doors, all of them clear.</p><small>From level 121</small></div>
-        <div class="bird card" style="--c:#ff6fa5"><h3>Flamingo</h3><p>Two opposite doors, both open.</p><small>From level 161</small></div>
+      <div class="sec-head reveal"><div><p class="kicker">News</p><h2>From the forge</h2></div></div>
+      <div class="news">
+        <article class="post reveal"><time datetime="2026-12-03">3 December 2026</time><h3>The Dragon Update</h3><p>Arrow Bird Escape 1.1 brings Dragon City, ranks from Bronze to Grandmaster, Christmas and New Year events, and cloud save.</p></article>
+        <article class="post reveal"><time datetime="2026-11-14">November 2026</time><h3>A new look for the studio</h3><p>Ashborn Studio has a new phoenix emblem, a new intro and this new home for all our games.</p></article>
+        <article class="post reveal"><time datetime="2026-11-06">November 2026</time><h3>Arrow Bird Escape is live</h3><p>Our first game is out on Google Play. Thank you to everyone who tested it!</p></article>
       </div>
     </div>
   </section>
 
-  <section class="dragons" id="dragons">
-    <div class="wrap">
-      <div class="eyebrow">Boss levels</div>
-      <h2 class="h2">Ten dragons. Ten cages. Can you free them all?</h2>
-      <p class="lead">Each pair of islands ends in a dragon's lair. Clear every single arrow to snap the chains, burst the cage and set the dragon free.</p>
-      <div class="roster" id="roster"></div>
-      <a class="btn btn-gold" href="arrow-bird-escape/dragons.html">See them break free →</a>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap studio">
-      <div class="about card">
-        <div class="eyebrow">The studio</div>
-        <h2 class="h2">Small games, made with care</h2>
-        <p>Ashborn Studio is a two-person team making relaxing, fair mobile games and apps for Android.</p>
-        <p>We build games we'd want to play ourselves: no sign-ups, no pay-to-win, no pressure. Just good puzzles, short sessions and plenty of charm.</p>
-      </div>
-      <div class="contact card">
-        <h2>Say hello 👋</h2>
-        <p>Questions, ideas or a bug to report? We read every message.</p>
-        <a class="btn" href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
-      </div>
+  <section class="contact" id="contact">
+    <div class="wrap reveal">
+      <p class="kicker">Contact</p>
+      <h2 class="metal">Say hello</h2>
+      <p>Found a bug, have an idea, or want to work with us? We read every message.</p>
+      <a class="btn btn-fire" href="mailto:theashborn.dev@gmail.com">theashborn.dev@gmail.com</a>
     </div>
   </section>
 </main>
 
-<footer class="foot">
+<footer>
   <div class="wrap">
     <span>© <span data-year>2026</span> Ashborn Studio</span>
     <nav aria-label="Footer">
-      <a href="arrow-bird-escape/dragons.html">Dragons</a>
-      <a href="arrow-bird-escape/privacy.html">Privacy policy</a>
-      <a href="mailto:theashborn.dev@gmail.com">Contact</a>
+      <a href="arrow-bird-escape/">Arrow Bird Escape</a>
+      <a href="arrow-bird-escape/privacy.html">Privacy policy (Arrow Bird Escape)</a>
+      <a href="app-ads.txt">app-ads.txt</a>
     </nav>
   </div>
 </footer>
 
 <script>
-  // Dragon roster (portraits rendered from the game)
-  var R = [["Venom","#3DBE6A",100],["Sand","#D9A441",200],["Frost","#5AB4F0",300],["Ember","#C8323A",400],["Storm","#4F6CF0",500],
-           ["Abyss","#1F8F96",600],["Shadow","#6E6390",700],["Crystal","#F28CC5",800],["Inferno","#FF7A3D",900],["Celestial","#F5D76E",1000]];
-  var roster = document.getElementById("roster");
-  R.forEach(function (d, i) {
-    var n = String(i + 1).padStart(2, "0");
-    var a = document.createElement("a");
-    a.href = "arrow-bird-escape/dragons.html#" + d[0].toLowerCase();
-    a.style.setProperty("--c", d[1]);
-    a.innerHTML = '<img src="arrow-bird-escape/dragons/p' + n + '.webp" alt="" width="120" height="120" loading="lazy"><span>' + d[0] + '</span><small>Level ' + d[2] + '</small>';
-    a.setAttribute("aria-label", d[0] + " Dragon, level " + d[2]);
-    roster.appendChild(a);
-  });
-  // Screenshot rail arrows
-  var rail = document.getElementById("rail");
-  document.querySelectorAll(".arrows button").forEach(function (b) {
-    b.addEventListener("click", function () { rail.scrollBy({ left: +b.dataset.dir * rail.clientWidth * 0.8, behavior: "smooth" }); });
-  });
+document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
+// Fade sections in as they scroll into view.
+(function () {
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+// Rising embers behind the hero.
+(function () {
+  var c = document.getElementById("embers"); if (!c || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var x = c.getContext("2d"), P = [], W, H, dpr = Math.min(2, window.devicePixelRatio || 1);
+  function size() { W = c.clientWidth; H = c.clientHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  size(); addEventListener("resize", size);
+  for (var i = 0; i < 70; i++) P.push({ x: Math.random() * W, y: Math.random() * H, v: .3 + Math.random() * .9, r: .6 + Math.random() * 2, p: Math.random() * 6 });
+  (function tick(t) {
+    x.clearRect(0, 0, W, H);
+    P.forEach(function (e) {
+      e.y -= e.v; e.x += Math.sin(t / 900 + e.p) * .3;
+      if (e.y < -10) { e.y = H + 10; e.x = Math.random() * W; }
+      var a = Math.min(1, e.y / H * 1.4) * (.55 + .45 * Math.sin(t / 200 + e.p * 3));
+      x.beginPath(); x.arc(e.x, e.y, e.r, 0, 7);
+      x.fillStyle = "rgba(255," + (120 + (e.p * 20 | 0)) + ",40," + a.toFixed(2) + ")";
+      x.shadowColor = "#ff6a1a"; x.shadowBlur = 8; x.fill();
+    });
+    requestAnimationFrame(tick);
+  })(0);
+})();
 </script>
-<script src="site.js"></script>
 </body>
 </html>
